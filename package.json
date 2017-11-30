@@ -1,0 +1,31 @@
+{
+  "name": "zadanie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run test:html",
+    "test:html": "glob-run nu-html-checker *.html",
+    "build": "npm run build:clean && npm run build:sass && npm run build:autoprefixer && npm run test",
+    "build:cssdev": "npm run build:sassdev && npm run build:autoprefixer",
+    "build:clean": "rimraf css/*",
+    "build:sass": "sass --sourcemap=none --update sass:css",
+    "build:sassdev": "sass --update sass:css",
+    "build:autoprefixer": "autoprefixer-cli css/style.css",
+    "watch": "npm run build && parallelshell \"npm run watch:sassprefixer\" \"npm run watch:browsersync\" ",
+    "watch:sassprefixer": "onchange sass/*.scss -- npm run build:cssdev",
+    "watch:browsersync": "browser-sync start --server --files \"css/*.css\" \"*.html\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer-cli": "^1.0.0",
+    "browser-sync": "^2.18.13",
+    "glob-run": "^0.1.6",
+    "nu-html-checker": "^0.1.0",
+    "onchange": "^3.2.1",
+    "parallelshell": "^3.0.2",
+    "rimraf": "^2.6.2"
+  }
+}
