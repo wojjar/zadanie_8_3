@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test:html",
+    "test": "npm run test:html && npm run test:js",
     "test:html": "glob-run nu-html-checker *.html",
+    "test:js": "eslint js/*.js",
     "build": "npm run build:clean && npm run build:sass && npm run build:autoprefixer && npm run test",
     "build:cssdev": "npm run build:sassdev && npm run build:autoprefixer",
     "build:clean": "rimraf css/*",
@@ -27,5 +28,8 @@
     "onchange": "^3.2.1",
     "parallelshell": "^3.0.2",
     "rimraf": "^2.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.12.1"
   }
 }
